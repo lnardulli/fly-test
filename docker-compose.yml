@@ -1,0 +1,33 @@
+version: "2.1"
+services:
+  mysqlfly3:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=immfly
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+  
+  application:
+    image: application:latest
+    container_name: my-web-container
+    volumes:
+      - C:/exports:/tmp/exports
+
+    environment:
+          - MYSQL_ROOT_PASSWORD=admin
+          - MYSQL_DATABASE=immfly
+          - MYSQL_HOST=mysqlfly3
+          - MYSQL_PORT=3306
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysqlfly3:
+        condition: service_healthy
+ 
+  

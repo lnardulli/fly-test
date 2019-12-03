@@ -37,7 +37,7 @@ public class ChannelController {
     ChannelService channelService;
 
 
-    @GetMapping("/create")
+    @GetMapping("/populate")
     public @ResponseBody
     ResponseEntity<List<Channel>> create() {
         channelService.create();
@@ -52,12 +52,6 @@ public class ChannelController {
     @GetMapping("/full/{id}")
     public @ResponseBody ResponseEntity<Channel> getFullDetail(@PathVariable("id") Long id) {
         return new ResponseEntity<>(channelService.getChannelById(id), HttpStatus.OK);
-    }
-
-    @GetMapping("/list/avg")
-    public @ResponseBody ResponseEntity<HashMap<String, Float>> getFullDetail() {
-        List<Channel> channels = channelService.list();
-        return new ResponseEntity<>(ratingService.obtaingRatings(channels), HttpStatus.OK);
     }
 
     @GetMapping("/export-rating")

@@ -1,6 +1,6 @@
 version: "2.1"
 services:
-  mysqlfly3:
+  mysqlfly:
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=admin
@@ -14,20 +14,18 @@ services:
       retries: 10
   
   application:
-    image: application:latest
-    container_name: my-web-container
+    image: fly-ws:latest
+    container_name: fly-ws
     volumes:
-      - C:/exports:/tmp/exports
+      - ./exports:/tmp/exports
 
     environment:
           - MYSQL_ROOT_PASSWORD=admin
           - MYSQL_DATABASE=immfly
-          - MYSQL_HOST=mysqlfly3
+          - MYSQL_HOST=mysqlfly
           - MYSQL_PORT=3306
     ports:
       - "8080:8080"
     depends_on:
-      mysqlfly3:
+      mysqlfly:
         condition: service_healthy
- 
-  

@@ -33,7 +33,7 @@ public class ChannelService {
     }
 
     public void create() {
-        /*
+
         Channel channel = new Channel("SERIES", "ESP", "example.png");
 
         List<Channel> listSubChannels = new ArrayList<>();
@@ -80,7 +80,6 @@ public class ChannelService {
         contentList.add(contenElObjetivo2);
         contentList.add(contenElObjetivo3);
         contentList.add(contenElObjetivo4);
-        //contentList.add(contenElObjetivo4);
 
         elObjetivo.setContentList(contentList);
 
@@ -97,8 +96,8 @@ public class ChannelService {
 
         channelRepository.save(channel);
 
-        */
-        Channel channel = new Channel("PELICULAS", "ESP", "example.png");
+
+        Channel channel2 = new Channel("PELICULAS", "ESP", "example.png");
 
         Content[] contenMovie = {
                 new MovieContent(7.2f, "Movie 1", "Quentin Tarantino"),
@@ -109,7 +108,7 @@ public class ChannelService {
 
         channel.setContentList(Arrays.asList(contenMovie));
 
-        channelRepository.save(channel);
+        channelRepository.save(channel2);
 
     }
 

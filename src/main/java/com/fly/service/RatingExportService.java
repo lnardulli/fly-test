@@ -15,6 +15,7 @@ import java.io.InputStream;
 
 @Service
 public class RatingExportService {
+
     static final String ENDPOINT_TO_DOWNLOAD = "http://localhost:8080/v1/api/export-rating";
 
     public void download(String fileDownload) {
@@ -41,8 +42,6 @@ public class RatingExportService {
 
             client.close();
 
-            System.out.println("File Download Completed!");
-            System.out.println(fileDownload);
             System.out.println("File Download Completed!!!");
 
         } catch (ClientProtocolException e) {
